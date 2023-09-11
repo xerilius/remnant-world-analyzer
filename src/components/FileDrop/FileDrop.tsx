@@ -1,15 +1,17 @@
-import React, { useState, useEffect, useRef, DragEvent } from "react";
+import React, { useState } from "react";
+import classNames from "classnames/bind";
+import downloadIcon from "../../assets/download-icon.png";
+
 import styles from "./FileDrop.module.scss";
-import { join } from "path";
 
 interface FileDropProps {
-  onUpload: () => void;
-  children?: JSX.Element | JSX.Element[];
+  setData: Function;
 }
 
-export function FileDrop({ onUpload, children }: FileDropProps) {
+export function FileDrop({ setData }: FileDropProps) {
+  const classnames = require("classnames");
   const [dragActive, setDragActive] = useState<boolean>(false);
-  const drop = useRef();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleDrag = (e: any) => {
     e.preventDefault();
@@ -27,9 +29,15 @@ export function FileDrop({ onUpload, children }: FileDropProps) {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
+    setLoading(true);
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
+
+      readFileAsText(file).then((data) => {
+        setData(data as string);
+        setLoading(false);
+      });
     }
   };
 
@@ -52,12 +60,33 @@ export function FileDrop({ onUpload, children }: FileDropProps) {
 
   return (
     <div
-      className={styles.FileDrop}
-      ref={drop.current}
+      className={classnames(
+        styles.FileDrop,
+        dragActive ? styles.DropActive : styles.DropInactive
+      )}
       onDragEnter={handleDrag}
       onDragLeave={handleDrag}
       onDragOver={handleDrag}
       onDrop={handleDrop}
-    ></div>
+    >
+      <span className={styles.FileDropZone}>
+        <img
+          src={downloadIcon}
+          className={styles.Download}
+          height={100}
+          width={100}
+        />
+
+        <span className={styles.FileDropText}>
+          {loading ? (
+            <>Loading ...</>
+          ) : (
+            <>
+              Drop your <code className={styles.Sav}>.sav</code> file here
+            </>
+          )}
+        </span>
+      </span>
+    </div>
   );
 }
