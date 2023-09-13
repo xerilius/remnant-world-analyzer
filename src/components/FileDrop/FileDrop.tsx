@@ -1,17 +1,21 @@
-import React, { useState } from "react";
-import classNames from "classnames/bind";
-import downloadIcon from "../../assets/download-icon.png";
+import React, { useLayoutEffect, useState } from "react";
+import { FileDropStatus } from "./components/FileDropStatus";
 
 import styles from "./FileDrop.module.scss";
 
 interface FileDropProps {
   setData: Function;
+  data: string;
 }
 
-export function FileDrop({ setData }: FileDropProps) {
+export function FileDrop({ setData, data }: FileDropProps) {
   const classnames = require("classnames");
   const [dragActive, setDragActive] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useLayoutEffect(() => {
+    if (data !== "") setIsLoading(false);
+  }, [data]);
 
   const handleDrag = (e: any) => {
     e.preventDefault();
@@ -28,16 +32,18 @@ export function FileDrop({ setData }: FileDropProps) {
   const handleDrop = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
+
+    setIsLoading(true);
     setDragActive(false);
-    setLoading(true);
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
 
-      readFileAsText(file).then((data) => {
-        setData(data as string);
-        setLoading(false);
-      });
+      setTimeout(() => {
+        readFileAsText(file).then((data) => {
+          setData(data as string);
+        });
+      }, 4000);
     }
   };
 
@@ -69,24 +75,7 @@ export function FileDrop({ setData }: FileDropProps) {
       onDragOver={handleDrag}
       onDrop={handleDrop}
     >
-      <span className={styles.FileDropZone}>
-        <img
-          src={downloadIcon}
-          className={styles.Download}
-          height={100}
-          width={100}
-        />
-
-        <span className={styles.FileDropText}>
-          {loading ? (
-            <>Loading ...</>
-          ) : (
-            <>
-              Drop your <code className={styles.Sav}>.sav</code> file here
-            </>
-          )}
-        </span>
-      </span>
+      <FileDropStatus isLoading={isLoading} />
     </div>
   );
 }
