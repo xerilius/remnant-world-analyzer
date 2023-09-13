@@ -1,23 +1,25 @@
 import React, { useState } from "react";
-import gameIcon from "./assets/remnant-icon.png";
+import classnames from "classnames";
 import { FileDrop } from "./components";
 import { parseData } from "./utilities/parseData";
-import gameLogo from "./assets/remnant-logo2.png";
+import gameLogo from "./assets/remnant-logo.png";
 
-import styles from "./App.module.css";
+import styles from "./App.module.scss";
 
 function App() {
-  const [data, setData] = useState(null);
-  const display = data && parseData(data);
+  const [data, setData] = useState("");
+  const modifiedData = data && parseData(data);
 
   return (
     <div className={styles.App}>
       <div className={styles.Header}>
         <img src={gameLogo} />
-        <div className={styles.Title}>World Analyzer</div>
+        <div className={classnames(styles.Title, styles.Neon)}>
+          World Analyzer
+        </div>
       </div>
-      {<FileDrop setData={setData} />}
-      {display}
+      {<FileDrop setData={setData} data={data} />}
+      {modifiedData}
     </div>
   );
 }

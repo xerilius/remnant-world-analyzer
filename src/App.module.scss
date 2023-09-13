@@ -1,0 +1,47 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 100%;
+  min-height: 100vh;
+  max-width: 100%;
+  padding: 20px;
+
+  font-family: "Roboto", sans-serif;
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 50px;
+}
+
+.Title {
+  font-weight: 700;
+  letter-spacing: 3px;
+
+  &.Default {
+    font-family: "Play", sans-serif;
+    text-transform: uppercase;
+    color: #ff0000;
+    font-size: 30px;
+    -webkit-text-stroke: 1px #000000ad;
+    text-shadow: #000000 1px 0 10px;
+  }
+
+  &.Neon {
+    font-family: "Neonderthaw", monospace;
+    color: white;
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    -webkit-text-stroke: 1px #ff016ca6;
+    text-shadow: #c2c2c2a8 1px 0 10px;
+    margin: -25px;
+    // font-family: "Tomorrow", sans-serif;
+    // text-transform: uppercase;
+  }
+}
