@@ -32,13 +32,17 @@ export function FileDrop({ setData, data }: FileDropProps) {
   const handleDrop = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
-
-    setIsLoading(true);
     setDragActive(false);
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
+      const fileExt = file.name.slice(-3);
+      if (fileExt !== "sav") {
+        alert("Wrong file type");
+        return;
+      }
 
+      setIsLoading(true);
       setTimeout(() => {
         readFileAsText(file).then((data) => {
           setData(data as string);
