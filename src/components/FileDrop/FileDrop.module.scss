@@ -1,12 +1,32 @@
 $neonyellow: #cfff04;
 
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --filedrop-height: 300px;
+  --filedrop-width: 800px;
+}
+
+.DropActive {
+  background-color: #75757581;
+}
+
+.DropInactive {
+  background-color: #181818;
+}
+
 .FileDrop {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   color: white;
 
-  border: 3px solid white;
+  border: 3px solid rgba(255, 255, 255, 0.341);
   border-radius: 5px;
   box-shadow: #000000 1px 0 10px;
 
@@ -14,9 +34,57 @@ $neonyellow: #cfff04;
   width: 800px;
 }
 
-.DropActive {
-  background-color: #4a0000;
+.FileLoading {
+  // main
+  &.FileDrop:before {
+    content: "";
+    width: 104%;
+    height: 109%;
+    border-radius: 8px;
+    background-image: linear-gradient(
+      var(--rotate),
+      #5500ff,
+      #fffb00 43%,
+      #00b3ff
+    );
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    margin-top: -10px;
+    animation: spin 2.5s linear infinite;
+  }
+
+  // blur
+  &.FileDrop:after {
+    position: absolute;
+    content: "";
+    top: calc(var(--filedrop-height) / 6);
+    left: -140px;
+    right: 0;
+    z-index: -1;
+    height: 120%;
+    width: 130%;
+    margin-top: -70px;
+    transform: scale(0.8);
+    filter: blur(calc(var(--filedrop-height) / 6));
+    background-image: linear-gradient(
+      var(--rotate),
+      #5ddcff,
+      #3c67e3 43%,
+      #4e00c2
+    );
+    opacity: 1;
+    transition: opacity 0.5s;
+    animation: spin 2.5s linear infinite;
+  }
 }
-.DropInactive {
-  background-color: #181818;
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
 }

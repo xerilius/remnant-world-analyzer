@@ -19,12 +19,7 @@ export function FileDropStatus({ isLoading = false }: FileDropStatusProps) {
 const DefaultState = () => {
   return (
     <>
-      <img
-        src={downloadIcon}
-        className={styles.Download}
-        height={100}
-        width={100}
-      />
+      <img src={downloadIcon} className={styles.Download} />
       <span className={styles.FileDropText}>
         Drop your <code className={styles.Sav}>.sav</code> file here
       </span>

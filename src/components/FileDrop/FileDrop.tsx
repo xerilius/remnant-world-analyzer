@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
+import classnames from "classnames";
 import { FileDropStatus } from "./components/FileDropStatus";
 
 import styles from "./FileDrop.module.scss";
@@ -9,7 +10,6 @@ interface FileDropProps {
 }
 
 export function FileDrop({ setData, data }: FileDropProps) {
-  const classnames = require("classnames");
   const [dragActive, setDragActive] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -69,17 +69,21 @@ export function FileDrop({ setData, data }: FileDropProps) {
   };
 
   return (
-    <div
-      className={classnames(
-        styles.FileDrop,
-        dragActive ? styles.DropActive : styles.DropInactive
-      )}
-      onDragEnter={handleDrag}
-      onDragLeave={handleDrag}
-      onDragOver={handleDrag}
-      onDrop={handleDrop}
-    >
-      <FileDropStatus isLoading={isLoading} />
+    <div className={styles.FileDropContainer}>
+      <div
+        className={classnames(
+          isLoading
+            ? classnames(styles.FileLoading, styles.FileDrop)
+            : styles.FileDrop,
+          dragActive ? styles.DropActive : styles.DropInactive
+        )}
+        onDragEnter={handleDrag}
+        onDragLeave={handleDrag}
+        onDragOver={handleDrag}
+        onDrop={handleDrop}
+      >
+        <FileDropStatus isLoading={isLoading} />
+      </div>
     </div>
   );
 }
