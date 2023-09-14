@@ -45,3 +45,11 @@
     // text-transform: uppercase;
   }
 }
+
+.Options {
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-end;
+  flex-wrap: wrap;
+  width: 100%;
+}
