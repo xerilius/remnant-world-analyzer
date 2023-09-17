@@ -23,9 +23,9 @@
   justify-content: center;
   position: absolute;
 
-  width: 250%;
+  width: 200%;
   transition: transform 1s ease;
-  animation: shift 30s linear infinite;
+  animation: shift 10s linear infinite;
 }
 
 .Text {
@@ -46,9 +46,9 @@
 
 @keyframes shift {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(-37%);
   }
   100% {
-    transform: translateX(1%);
+    transform: translateX(0%);
   }
 }

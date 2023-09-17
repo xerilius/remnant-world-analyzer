@@ -4,6 +4,8 @@ import { Stripes } from "./components";
 import styles from "./WIP.module.scss";
 
 export function WIP() {
+  const message = "⚠ Work in progress ⚠";
+
   return (
     <div className={styles.WIP}>
       <div className={styles.TextContainer}>
@@ -11,16 +13,14 @@ export function WIP() {
         <Stripes />
         <Stripes />
         <Stripes />
-        <span className={styles.Text}>⚠ Work in progress ⚠︎</span>
+        <span className={styles.Text}>{message}</span>
         <Stripes />
         <Stripes />
-        <span className={styles.Text}>⚠ Work in progress ⚠︎</span>
         <Stripes />
         <Stripes />
-        <span className={styles.Text}>⚠ Work in progress ⚠︎</span>
+        <span className={styles.Text}>{message}</span>
         <Stripes />
         <Stripes />
-        <span className={styles.Text}>⚠ Work in progress ⚠︎</span>
         <Stripes />
         <Stripes />
       </div>
