@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classnames from "classnames";
-import { FileDrop, Toggle } from "./components";
+import { FileDrop, Toggle, WIP } from "./components";
 import { parseData } from "./utilities/parseData";
 import gameLogo from "./assets/remnant-logo.png";
 
@@ -28,6 +28,7 @@ function App() {
         </div>
       </div>
       {<FileDrop setData={setData} data={data} />}
+      <WIP />
       {modifiedData}
     </div>
   );

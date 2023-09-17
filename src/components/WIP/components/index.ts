@@ -1,0 +1,1 @@
+export { Stripes } from "./Stripes";
