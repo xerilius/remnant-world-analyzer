@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { FileDropStatus } from "./components/FileDropStatus";
 
@@ -13,7 +13,7 @@ export function FileDrop({ setData, data }: FileDropProps) {
   const [dragActive, setDragActive] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (data !== "") setIsLoading(false);
   }, [data]);
 
@@ -42,12 +42,14 @@ export function FileDrop({ setData, data }: FileDropProps) {
         return;
       }
 
+      setData("");
       setIsLoading(true);
+
       setTimeout(() => {
         readFileAsText(file).then((data) => {
           setData(data as string);
         });
-      }, 4000);
+      }, 3000);
     }
   };
 
