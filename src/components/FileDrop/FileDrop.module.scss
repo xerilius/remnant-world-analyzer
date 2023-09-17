@@ -43,9 +43,9 @@ $neonyellow: #cfff04;
     border-radius: 8px;
     background-image: linear-gradient(
       var(--rotate),
-      #5500ff,
-      #fffb00 43%,
-      #00b3ff
+      #ff005d,
+      #00d5ff 43%,
+      #ffe600
     );
     position: absolute;
     z-index: -1;
@@ -70,9 +70,9 @@ $neonyellow: #cfff04;
     filter: blur(calc(var(--filedrop-height) / 6));
     background-image: linear-gradient(
       var(--rotate),
-      #5ddcff,
-      #3c67e3 43%,
-      #4e00c2
+      #ff005d,
+      #00d5ff 43%,
+      #ffe600
     );
     opacity: 1;
     transition: opacity 0.5s;
