@@ -7,6 +7,7 @@
   width: 100%;
 
   font-family: "Roboto", sans-serif;
+  overflow: hidden;
 }
 
 .Header {
@@ -52,4 +53,24 @@
   width: 100%;
   margin-right: 20px;
   margin-top: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #1d1d1d;
+  background-color: #0f0f0fbb;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #464747;
+  box-shadow: inset 0 0 5px #afafafeb;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b38f00;
 }
